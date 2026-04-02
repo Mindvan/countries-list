@@ -10,6 +10,10 @@ const Page = styled.div`
   max-width: 900px;
   margin: 0 auto;
   padding: 1rem 5rem;
+
+  @media (max-width: 560px) {
+    padding: 1rem;
+  }
 `
 
 const Hero = styled.section`
