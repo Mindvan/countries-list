@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom'
 import { useContext } from 'react'
 import styled from 'styled-components'
-import { ThemeContext } from '../providers/ThemeProvider/model/themeContext'
+import { ThemeContext } from '../providers/AppProvider'
 import { Footer } from '../../widgets/footer'
 import { Header } from '../../widgets/header'
 
@@ -17,10 +17,19 @@ const Container = styled.div`
   width: 100%;
   max-width: 1100px;
   margin: 0 auto;
-  padding: 0.75rem 1.25rem 5rem;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+
+  @media (max-width: 1100px) {
+    padding: 1rem;
+    gap: 0.5rem;
+  }
+
+  @media (max-width: 640px) {
+    padding: 0.5rem;
+  }
 `
 
 export const AppLayout = () => {

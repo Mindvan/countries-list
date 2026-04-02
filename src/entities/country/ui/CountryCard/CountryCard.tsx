@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import type { Country } from '../..'
-import { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect, useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
 const BODY_HEIGHT_TRANSFORM = 20;
 const NATIVE_HEIGHT_TRANSFORM = 20;
 
@@ -25,6 +25,36 @@ const Body = styled.div<{ $titleHeight: number, $nativeNamesHeight: number }>`
     transition: all 0.4s ease;
     color: var(--color-text-muted);
   }
+`
+
+const FavoriteLabel = styled.label`
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+
+  &:hover {
+    border-color: #6366f1;
+  }
+
+  &:has(input:checked) {
+    border-color: #6366f1;
+    background: rgb(99 102 241 / 12%);
+  }
+`
+
+const FavoriteCheckbox = styled.input.attrs({ type: 'checkbox' })`
+  width: 1rem;
+  height: 1rem;
+  margin: 0;
+  accent-color: #6366f1;
+  cursor: pointer;
 `
 
 const FlagWrap = styled.div`
@@ -92,6 +122,9 @@ const NativeNames = styled.p`
 
 type CountryCardProps = {
   data: Country
+  favoritesEnabled?: boolean
+  isFavorite?: boolean
+  onFavoriteToggle?: () => void
 }
 
 function formatNativeNames(nativeName: Country['name']['nativeName']): string {
@@ -104,7 +137,12 @@ function formatNativeNames(nativeName: Country['name']['nativeName']): string {
 }
 
 
-function CountryCard({ data }: CountryCardProps) {
+function CountryCard({
+  data,
+  favoritesEnabled = false,
+  isFavorite = false,
+  onFavoriteToggle,
+}: CountryCardProps) {
   const nativeLine = formatNativeNames(data.name.nativeName)
   const [isHovered, setIsHovered] = useState(false)
 
@@ -113,8 +151,7 @@ function CountryCard({ data }: CountryCardProps) {
   const nativeNamesRef = useRef<HTMLParagraphElement>(null)
   const [nativeNamesHeight, setNativeNamesHeight] = useState(0)
 
-  const navigate = useNavigate();
-  console.log(navigate);
+  const navigate = useNavigate()
 
   useEffect(() => {
     const el = titleRef.current
@@ -141,6 +178,24 @@ function CountryCard({ data }: CountryCardProps) {
       <FlagWrap>
         <FlagImg src={data.flag.png} alt={data.flag.alt} loading="lazy" />
       </FlagWrap>
+      {favoritesEnabled && onFavoriteToggle ? (
+        <FavoriteLabel
+          onClick={(e) => e.stopPropagation()}
+          onPointerDown={(e) => e.stopPropagation()}
+        >
+          <FavoriteCheckbox
+            checked={isFavorite}
+            onChange={(e) => {
+              e.stopPropagation()
+              onFavoriteToggle()
+            }}
+            onClick={(e) => e.stopPropagation()}
+            aria-label={
+              isFavorite ? 'Убрать из избранного' : 'Добавить в избранное'
+            }
+          />
+        </FavoriteLabel>
+      ) : null}
       <Body $titleHeight={titleHeight} $nativeNamesHeight={nativeNamesHeight}>
         <Title ref={titleRef}>{data.name.common}</Title>
         {nativeLine ? <NativeNames ref={nativeNamesRef}>{nativeLine}</NativeNames> : null}

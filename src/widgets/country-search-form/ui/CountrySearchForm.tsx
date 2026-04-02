@@ -4,12 +4,16 @@ const Root = styled.form`
   margin: 0;
   width: 100%;
   max-width: 320px;
+
+  @media (max-width: 1100px) {
+    max-width: 100%;
+  }
 `
 
 const Input = styled.input`
   width: 100%;
-  padding: 0.5rem 0.75rem;
-  font-size: 0.75rem;
+  padding: 0.5rem;
+  font-size: 1rem;
   border: 1px solid var(--color-border);
   border-radius: 8px;
   background: var(--color-surface);
@@ -25,7 +29,15 @@ const Input = styled.input`
 
   &:focus {
     border-color: var(--color-outline);
-    box-shadow: 0 0 0 3px rgb(99 102 241 / 18%);
+    box-shadow: 0 0 0 0.1rem rgb(99 102 241 / 35%);
+  }
+
+  @media (max-width: 1100px) {
+    min-width: 0;
+  }
+
+  @media (max-width: 520px) {
+    padding: 0.5rem 0.25rem;
   }
 `
 

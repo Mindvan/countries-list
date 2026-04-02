@@ -9,12 +9,12 @@ const Page = styled.div`
   width: 100%;
   max-width: 900px;
   margin: 0 auto;
-  padding: 1rem 1.25rem 5rem;
+  padding: 1rem 5rem;
 `
 
 const Hero = styled.section`
   display: grid;
-  gap: 1.25rem;
+  gap: 1rem;
   grid-template-columns: minmax(160px, 220px) 1fr;
   align-items: start;
   margin-bottom: 2rem;
@@ -63,7 +63,7 @@ const NativeNames = styled.p`
 
 const CodeBadge = styled.span`
   display: inline-block;
-  margin-top: 0.25rem;
+  margin-top: 0.5rem;
   padding: 0.25rem 0.5rem;
   font-size: 0.75rem;
   font-weight: 600;
@@ -114,7 +114,7 @@ const InfoCard = styled.div`
 `
 
 const InfoLabel = styled.div`
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
   color: var(--color-text-muted);

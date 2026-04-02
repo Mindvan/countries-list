@@ -1,4 +1,6 @@
+import { useContext } from 'react'
 import styled from 'styled-components'
+import { AuthContext } from '../../../app/providers/AppProvider'
 import { Navbar } from '../../navbar/Navbar'
 
 const Bar = styled.header`
@@ -12,21 +14,21 @@ const Bar = styled.header`
   box-shadow: 0 1px 0 rgb(15 23 42 / 4%);
 `
 
-const Inner = styled.div`
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0.75rem 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.5rem;
-`
-
 const Brand = styled.div`
   display: flex;
   align-items: center;
   gap: 0.75rem;
   min-width: 0;
+
+  @media (max-width: 900px) {
+    flex: 1 1 auto;
+    min-width: 0;
+    gap: 0.5rem;
+  }
+
+  @media (max-width: 520px) {
+    gap: 0.25rem;
+  }
 `
 
 const Logo = styled.span`
@@ -39,6 +41,7 @@ const Logo = styled.span`
   font-size: 1.25rem;
   line-height: 1;
   box-shadow: 0 2px 8px rgb(99 102 241 / 35%);
+  flex-shrink: 0;
 `
 
 const BrandText = styled.div`
@@ -54,6 +57,10 @@ const Title = styled.span`
   letter-spacing: -0.03em;
   color: var(--color-text);
   line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
 `
 
 const Tagline = styled.span`
@@ -61,6 +68,36 @@ const Tagline = styled.span`
   font-weight: 500;
   color: var(--color-text-muted);
   line-height: 1.2;
+
+  @media (max-width: 720px) {
+    display: none;
+  }
+`
+
+const Greeting = styled.span`
+  flex: 1;
+  min-width: 0;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 0 0.25rem;
+
+  @media (max-width: 900px) {
+    order: 3;
+    flex: 1 0 100%;
+    text-align: center;
+    white-space: normal;
+    padding: 0.25rem 0 0;
+    line-height: 1.3;
+  }
+
+  @media (max-width: 520px) {
+    padding: 0.1rem 0 0;
+  }
 `
 
 const Nav = styled.nav`
@@ -68,10 +105,44 @@ const Nav = styled.nav`
   align-items: center;
   gap: 0.25rem;
   flex-shrink: 0;
+
+  @media (max-width: 900px) {
+    order: 2;
+    margin-left: auto;
+  }
+
+  @media (max-width: 520px) {
+    gap: 0.1rem;
+  }
+`
+
+const Inner = styled.div`
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+
+  @media (max-width: 1100px) {
+    padding: 0.5rem 1rem;
+    gap: 0.5rem;
+  }
+
+  @media (max-width: 900px) {
+    flex-wrap: wrap;
+    row-gap: 0.25rem;
+  }
+
+  @media (max-width: 640px) {
+    padding: 0.5rem;
+  }
 `
 
 export function Header() {
-  
+  const { username } = useContext(AuthContext)
+
   return (
     <Bar>
       <Inner>
@@ -79,9 +150,12 @@ export function Header() {
           <Logo aria-hidden>🌍</Logo>
           <BrandText>
             <Title>Кантри.ру</Title>
-            <Tagline>Справочник стран мира</Tagline>
+            <Tagline>Справочник стран</Tagline>
           </BrandText>
         </Brand>
+        <Greeting>
+          Привет, {username ?? 'аноним'}!
+        </Greeting>
         <Nav>
           <Navbar />
         </Nav>

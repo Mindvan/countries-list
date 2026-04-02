@@ -20,6 +20,11 @@ const Inner = styled.div`
   justify-content: space-between;
   gap: 1rem;
 
+  @media (max-width: 1100px) {
+    padding: 0.5rem 1rem;
+    gap: 0.5rem;
+  }
+
   @media (max-width: 640px) {
     flex-direction: column;
     align-items: flex-start;
@@ -38,7 +43,7 @@ export function Footer() {
   return (
     <Bar>
       <Inner>
-        <Credits>{year} Ivan Eroshin. Использованы данные из API <a style={{ color: 'var(--color-text)' }} href="https://restcountries.com/" target="_blank" rel="noopener noreferrer">REST Countries</a></Credits>
+        <Credits>{year} Ivan Eroshin. Использованы данные из API <a style={{ color: 'var(--color-text)' }} href="https://restcountries.com/" target="_blank" rel="noopener noreferrer">REST Countries</a> / Требуется VPN</Credits>
       </Inner>
     </Bar>
   )
