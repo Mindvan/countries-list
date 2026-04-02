@@ -614,6 +614,10 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   max-width: 900px;
   margin: 0 auto;
   padding: 1rem 5rem;
+
+  @media (max-width: 560px) {
+    padding: 1rem;
+  }
 `,hs=V.section`
   display: grid;
   gap: 1rem;
