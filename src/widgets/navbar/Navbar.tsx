@@ -72,20 +72,6 @@ const NavLinkStyled = styled(Link)`
   text-decoration: none;
 `
 
-const NavLabelLong = styled.span`
-  @media (max-width: 520px) {
-    display: none;
-  }
-`
-
-const NavLabelShort = styled.span`
-  display: none;
-
-  @media (max-width: 520px) {
-    display: inline;
-  }
-`
-
 export const Navbar = () => {
   const { theme, toggleTheme } = useContext(ThemeContext)
   const { username, logout } = useContext(AuthContext)
@@ -108,8 +94,7 @@ export const Navbar = () => {
         </ThemeLabelShort>
       </ThemeButton>
       <NavLinkStyled to="/" aria-label="Главная">
-        <NavLabelLong>Главная</NavLabelLong>
-        <NavLabelShort aria-hidden>Гл.</NavLabelShort>
+        Главная
       </NavLinkStyled>
       {username ? (
         <ThemeButton type="button" onClick={logout}>

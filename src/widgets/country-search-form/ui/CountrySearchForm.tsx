@@ -12,7 +12,7 @@ const Root = styled.form`
 
 const Input = styled.input`
   width: 100%;
-  padding: 0.5rem;
+  padding: 0.5rem 0.75rem;
   font-size: 1rem;
   border: 1px solid var(--color-border);
   border-radius: 8px;
@@ -34,10 +34,6 @@ const Input = styled.input`
 
   @media (max-width: 1100px) {
     min-width: 0;
-  }
-
-  @media (max-width: 520px) {
-    padding: 0.5rem 0.25rem;
   }
 `
 

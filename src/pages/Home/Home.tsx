@@ -130,10 +130,6 @@ const SortButton = styled.button`
     min-width: 0;
     padding: 0.5rem;
   }
-
-  @media (max-width: 520px) {
-    padding: 0.25rem 0.5rem;
-  }
 `
 
 const ContinentSelect = styled.select`
@@ -225,14 +221,6 @@ const EmptyState = styled.div`
 
   @media (max-width: 1100px) {
     padding: 0.5rem;
-  }
-
-  @media (max-width: 640px) {
-    padding: 0.5rem;
-  }
-
-  @media (max-width: 520px) {
-    padding: 0.25rem;
   }
 `
 

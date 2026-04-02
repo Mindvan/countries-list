@@ -28,7 +28,6 @@ const Inner = styled.div`
   @media (max-width: 640px) {
     flex-direction: column;
     align-items: flex-start;
-    gap: 0.5rem;
   }
 `
 

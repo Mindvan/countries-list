@@ -134,10 +134,6 @@ const Inner = styled.div`
     flex-wrap: wrap;
     row-gap: 0.25rem;
   }
-
-  @media (max-width: 640px) {
-    padding: 0.5rem;
-  }
 `
 
 export function Header() {

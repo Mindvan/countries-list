@@ -26,10 +26,6 @@ const Container = styled.div`
     padding: 1rem;
     gap: 0.5rem;
   }
-
-  @media (max-width: 640px) {
-    padding: 0.5rem;
-  }
 `
 
 export const AppLayout = () => {
